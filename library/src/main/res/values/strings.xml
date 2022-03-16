@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_title">Default Title</string>
+    <string name="default_text">Default text default text default text default text</string>
+    <string name="default_button_text">OK</string>
+</resources>
