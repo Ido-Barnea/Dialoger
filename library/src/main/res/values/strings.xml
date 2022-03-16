@@ -4,4 +4,7 @@
     <string name="default_text">Default text default text default text default text</string>
     <string name="default_button_text">OK</string>
     <string name="loading">Loading…</string>
+    <string name="success">Success!</string>
+    <string name="error_title">Error</string>
+    <string name="error_text">Oh no! It looks like something went wrong!</string>
 </resources>

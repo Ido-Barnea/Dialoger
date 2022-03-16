@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         handler.postDelayed({
             dialog.dismiss()
 
-            DialogAlerter(this, DialogAlerter.TYPE_SUCCESS)
+            DialogAlerter(this, DialogAlerter.TYPE_FAILURE)
                 .setTitle("New Dialog!")
                 .setText("This was an amazing success!")
                 .setButtonText("ALLONS-Y!")

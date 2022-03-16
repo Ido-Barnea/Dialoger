@@ -109,6 +109,9 @@ class DialogAlerter(
                 setTextColor(COLOR_SUCCESS)
                 setButtonBackgroundColor(COLOR_SUCCESS)
                 setButtonTextColor(Color.WHITE)
+
+                getDialogTitle().text = context.resources.getString(R.string.success)
+                getDialogText().text = ""
             }
 
             TYPE_FAILURE -> {
@@ -116,6 +119,9 @@ class DialogAlerter(
                 setTextColor(COLOR_FAILURE)
                 setButtonBackgroundColor(COLOR_FAILURE)
                 setButtonTextColor(Color.WHITE)
+
+                getDialogTitle().text = context.resources.getString(R.string.error_title)
+                getDialogText().text = context.resources.getString(R.string.error_text)
             }
 
             TYPE_LOADING -> {
@@ -126,6 +132,7 @@ class DialogAlerter(
                 setCanceledOnTouchOutside(false)
 
                 getDialogTitle().text = context.resources.getString(R.string.loading)
+                getDialogText().text = ""
             }
         }
     }
