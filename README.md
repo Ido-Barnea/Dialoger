@@ -21,9 +21,9 @@ A simple library to help developers create alert dialogs
 # :fast_forward: Quick use
   ```kotlin
   val dialog = DialogAlerter(this, DialogAlerter.TYPE_LOADING)
-            .setTitle("Loading")
+            .setTitle("This is a loading alert...")
             .setText("This might take a while...")
-            .setDialogWidth(DialogAlerter.WIDTH_SMALL)
+            .setProgressBarColor("#7acf19")
             .show()
 
         // dismiss the dialog after 3 seconds
