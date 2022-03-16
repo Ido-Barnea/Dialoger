@@ -6,8 +6,10 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
+import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.TextView
+
 
 class DialogAlerter(
     context: Context,
@@ -18,22 +20,53 @@ class DialogAlerter(
         const val TYPE_MESSAGE = 0
         const val TYPE_ERROR = 1
         const val TYPE_SUCCESS = 2
+
+        const val WIDTH_SMALL = 800
+        const val WIDTH_MEDIUM = 900
+        const val WIDTH_LARGE = 1000
     }
 
     private val dialog = AlertDialog.Builder(context).create()
-    private var dialogView: View =
-        LayoutInflater.from(context).inflate(R.layout.layout_dialog, null)
+    private var dialogView: View = LayoutInflater.from(context).inflate(R.layout.layout_dialog, null)
+
+    private var buttonOnClickListener: (() -> Unit)? = null
+    private var dialogWidth = WIDTH_MEDIUM
+
+    init {
+        dialogSetup()
+    }
 
     fun alert() {
+        dialog.setView(dialogView) // set dialog view after editing the view
+        dialog.show() // show the dialog
+
+        setDialogWidth(dialogWidth)
+    }
+
+    private fun dialogSetup(){
         getDialogButton().setOnClickListener {
             dialog.dismiss()
+            buttonOnClickListener?.invoke()
         }
-        // Set the dialog root background to be transparent
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.setView(dialogView)
 
-        // Show the dialog
-        dialog.show()
+        // set the dialog root background to be transparent
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
+
+    fun setDialogWidth(width: Int): DialogAlerter {
+        this.dialogWidth = width
+
+        val lp = WindowManager.LayoutParams()
+        lp.copyFrom(dialog.window?.attributes)
+        lp.width = width
+        dialog.window?.attributes = lp
+
+        return this
+    }
+
+    fun setButtonOnClickListener(callback: (() -> Unit)): DialogAlerter {
+        buttonOnClickListener = callback
+        return this
     }
 
     fun setTitle(text: String): DialogAlerter {
