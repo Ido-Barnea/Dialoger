@@ -1,5 +1,6 @@
 package com.barnea.dialogalerter
 
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -10,10 +11,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        DialogAlerter(this, DialogAlerter.TYPE_MESSAGE)
-            .setTitle("My Title")
-            .setText("Also my title but my text")
-            .setButtonText("This is a button")
+        DialogAlerter(this, DialogAlerter.TYPE_FAILURE)
+            .setTitle("Hello There! You Failed!! :)")
+            .setText("")
+            .setButtonTextColor(Color.WHITE)
             .setCanceledOnTouchOutside(false)
             .setDialogWidth(DialogAlerter.WIDTH_MEDIUM)
             .setButtonOnClickListener {

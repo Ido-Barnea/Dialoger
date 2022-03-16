@@ -2,6 +2,7 @@ package com.barnea.library
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
@@ -12,19 +13,24 @@ import android.widget.TextView
 
 
 class DialogAlerter(
-    context: Context,
+    context_: Context,
     dialogType: Int
 ) {
 
     companion object {
         const val TYPE_MESSAGE = 0
-        const val TYPE_ERROR = 1
+        const val TYPE_FAILURE = 1
         const val TYPE_SUCCESS = 2
 
         const val WIDTH_SMALL = 800
         const val WIDTH_MEDIUM = 900
         const val WIDTH_LARGE = 1000
+
+        const val COLOR_SUCCESS = "#42ba96"
+        const val COLOR_FAILURE = "#ff3333"
     }
+
+    private val context = context_
 
     private val dialog = AlertDialog.Builder(context).create()
     private var dialogView: View = LayoutInflater.from(context).inflate(R.layout.layout_dialog, null)
@@ -33,17 +39,20 @@ class DialogAlerter(
     private var dialogWidth = WIDTH_MEDIUM
 
     init {
-        dialogSetup()
+        dialogSetup(dialogType)
     }
 
     fun alert() {
+        if (getDialogTitle().text.isNullOrBlank()) getDialogTitle().height = 0
+        if (getDialogText().text.isNullOrBlank()) getDialogText().height = 0
+
         dialog.setView(dialogView) // set dialog view after editing the view
         dialog.show() // show the dialog
 
         setDialogWidth(dialogWidth)
     }
 
-    private fun dialogSetup(){
+    private fun dialogSetup(dialogType: Int){
         getDialogButton().setOnClickListener {
             dialog.dismiss()
             buttonOnClickListener?.invoke()
@@ -51,6 +60,27 @@ class DialogAlerter(
 
         // set the dialog root background to be transparent
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        when (dialogType){
+            TYPE_MESSAGE -> {
+                setTitleColor(Color.BLACK)
+                setTextColor(Color.BLACK)
+            }
+
+            TYPE_SUCCESS -> {
+                setTitleColor(COLOR_SUCCESS)
+                setTextColor(COLOR_SUCCESS)
+                setButtonBackgroundColor(COLOR_SUCCESS)
+                setButtonTextColor(Color.WHITE)
+            }
+
+            TYPE_FAILURE -> {
+                setTitleColor(COLOR_FAILURE)
+                setTextColor(COLOR_FAILURE)
+                setButtonBackgroundColor(COLOR_FAILURE)
+                setButtonTextColor(Color.WHITE)
+            }
+        }
     }
 
     fun setDialogWidth(width: Int): DialogAlerter {
@@ -94,13 +124,13 @@ class DialogAlerter(
         return this
     }
 
-    fun setButtonColor(color: String): DialogAlerter {
-        getDialogButton().background.setTint(Color.parseColor(color))
+    fun setButtonBackgroundColor(color: String): DialogAlerter {
+        getDialogButton().backgroundTintList = ColorStateList.valueOf(Color.parseColor(color))
         return this
     }
 
-    fun setButtonColor(color: Int): DialogAlerter {
-        getDialogButton().background.setTint(color)
+    fun setButtonBackgroundColor(color: Int): DialogAlerter {
+        getDialogButton().backgroundTintList = ColorStateList.valueOf(color)
         return this
     }
 
