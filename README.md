@@ -1,6 +1,10 @@
 # :alarm_clock: DialogAlerter
 A simple library to help developers create alert dialogs
 
+# :camera: Preview
+![preview image](https://github.com/Ido-Barnea/DialogAlerter/blob/master/images/loading%20alert.png)
+![preview image](https://github.com/Ido-Barnea/DialogAlerter/blob/master/images/success%20alert.png)
+
 # :question: How can I add this to my project?
 > Step 1: Add the JitPack repository to your build file
   ```gradle
