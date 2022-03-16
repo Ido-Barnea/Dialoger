@@ -12,7 +12,6 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 
-
 class DialogAlerter(
     context_: Context,
     dialogType: Int
@@ -44,6 +43,10 @@ class DialogAlerter(
         dialogSetup(dialogType)
     }
 
+    /**
+     * ses the dialog view and shows the dialog
+     * @return DialogAlerter object
+     */
     fun show(): DialogAlerter {
         if (getDialogTitle().text.isNullOrBlank()) getDialogTitle().height = 0
         if (getDialogText().text.isNullOrBlank()) getDialogText().height = 0
@@ -56,20 +59,45 @@ class DialogAlerter(
         return this
     }
 
+    /**
+     * dismisses the dialog
+     * @return DialogAlerter object
+     */
     fun dismiss(): DialogAlerter {
         dialog.dismiss()
         return this
     }
 
+    /**
+     * sets dialog button onClickListener
+     * sets dialog root background to be transparent
+     * sets dialog components according to the dialog type
+     * @param dialogType the number representing the type of the dialog
+     */
     private fun dialogSetup(dialogType: Int){
-        getDialogButton().setOnClickListener {
-            dialog.dismiss()
-            buttonOnClickListener?.invoke()
-        }
+        setDialogButtonOnClickListener()
 
         // set the dialog root background to be transparent
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
+        setDialogComponentsAccordingToDialogType(dialogType)
+    }
+
+    /**
+     * dismisses dialog when button is clicked and invokes buttonOnClickListener
+     */
+    private fun setDialogButtonOnClickListener(){
+        getDialogButton().setOnClickListener {
+            dialog.dismiss()
+            buttonOnClickListener?.invoke()
+        }
+    }
+
+    /**
+     * sets dialog components according to the dialog type
+     * @param dialogType the number representing the type of the dialog
+     */
+    private fun setDialogComponentsAccordingToDialogType(dialogType: Int){
         when (dialogType){
             TYPE_MESSAGE -> {
                 setTitleColor(Color.BLACK)
@@ -100,6 +128,11 @@ class DialogAlerter(
         }
     }
 
+    /**
+     * sets the width of the alert dialog popup
+     * @param width the width of the alert dialog popup
+     * @return DialogAlerter object
+     */
     fun setDialogWidth(width: Int): DialogAlerter {
         this.dialogWidth = width
 
@@ -111,97 +144,160 @@ class DialogAlerter(
         return this
     }
 
+    /**
+     * sets buttonOnClickListener to the callback parameter
+     * @param callback the callback for the dialog onClickListener
+     * @return DialogAlerter object
+     */
     fun setButtonOnClickListener(callback: (() -> Unit)): DialogAlerter {
         buttonOnClickListener = callback
         return this
     }
 
+    /**
+     * @return DialogAlerter object
+     */
     fun setTitle(text: String): DialogAlerter {
         getDialogTitle().text = text
         return this
     }
 
+    /**
+     * @return DialogAlerter object
+     */
     fun setText(text: String): DialogAlerter {
         getDialogText().text = text
         return this
     }
 
+    /**
+     * @return DialogAlerter object
+     */
     fun setButtonText(text: String): DialogAlerter {
         getDialogButton().text = text
         return this
     }
 
+    /**
+     * @return DialogAlerter object
+     */
     fun setBackgroundColor(color: String): DialogAlerter {
         getDialogBackground().background.setTint(Color.parseColor(color))
         return this
     }
 
+    /**
+     * @return DialogAlerter object
+     */
     fun setBackgroundColor(color: Int): DialogAlerter {
         getDialogBackground().background.setTint(color)
         return this
     }
 
+    /**
+     * @return DialogAlerter object
+     */
     fun setButtonBackgroundColor(color: String): DialogAlerter {
         getDialogButton().backgroundTintList = ColorStateList.valueOf(Color.parseColor(color))
         return this
     }
 
+    /**
+     * @return DialogAlerter object
+     */
     fun setButtonBackgroundColor(color: Int): DialogAlerter {
         getDialogButton().backgroundTintList = ColorStateList.valueOf(color)
         return this
     }
 
+    /**
+     * @return DialogAlerter object
+     */
     fun setTitleColor(color: String): DialogAlerter {
         getDialogTitle().setTextColor(Color.parseColor(color))
         return this
     }
 
+    /**
+     * @return DialogAlerter object
+     */
     fun setTitleColor(color: Int): DialogAlerter {
         getDialogTitle().setTextColor(color)
         return this
     }
 
+    /**
+     * @return DialogAlerter object
+     */
     fun setTextColor(color: String): DialogAlerter {
         getDialogText().setTextColor(Color.parseColor(color))
         return this
     }
 
+    /**
+     * @return DialogAlerter object
+     */
     fun setTextColor(color: Int): DialogAlerter {
         getDialogText().setTextColor(color)
         return this
     }
 
+    /**
+     * @return DialogAlerter object
+     */
     fun setButtonTextColor(color: String): DialogAlerter {
         getDialogButton().setTextColor(Color.parseColor(color))
         return this
     }
 
+    /**
+     * @return DialogAlerter object
+     */
     fun setButtonTextColor(color: Int): DialogAlerter {
         getDialogButton().setTextColor(color)
         return this
     }
 
+    /**
+     * @param isCanceledOnTouchOutside whether the dialog will be dismissed on touch outside of it or not
+     * @return DialogAlerter object
+     */
     fun setCanceledOnTouchOutside(isCanceledOnTouchOutside: Boolean): DialogAlerter {
         dialog.setCanceledOnTouchOutside(isCanceledOnTouchOutside)
         return this
     }
 
+    /**
+     * @return the dialog title textView
+     */
     private fun getDialogTitle(): TextView {
         return dialogView.findViewById(R.id.dialog_title)
     }
 
+    /**
+     * @return the dialog text textView
+     */
     private fun getDialogText(): TextView {
         return dialogView.findViewById(R.id.dialog_text)
     }
 
+    /**
+     * @return the dialog button
+     */
     private fun getDialogButton(): TextView {
         return dialogView.findViewById(R.id.dialog_button)
     }
 
+    /**
+     * @return the dialog progress bar
+     */
     private fun getDialogProgressBar(): ProgressBar {
         return dialogView.findViewById(R.id.dialog_progressBar)
     }
 
+    /**
+     * @return the dialog parent view
+     */
     private fun getDialogBackground(): LinearLayout {
         return dialogView.findViewById(R.id.dialog_background)
     }

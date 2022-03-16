@@ -17,12 +17,12 @@ class MainActivity : AppCompatActivity() {
             .setDialogWidth(DialogAlerter.WIDTH_SMALL)
             .show()
 
-        // dismiss the dialog after 10 seconds
+        // dismiss the dialog after 3 seconds
         val handler = Handler()
         handler.postDelayed({
             dialog.dismiss()
 
-            DialogAlerter(this, DialogAlerter.TYPE_FAILURE)
+            DialogAlerter(this, DialogAlerter.TYPE_SUCCESS)
                 .setTitle("New Dialog!")
                 .setText("This was an amazing success!")
                 .setButtonText("ALLONS-Y!")
@@ -31,6 +31,6 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "dialog button clicked", Toast.LENGTH_SHORT).show()
                 }
                 .show()
-        }, 2000)
+        }, 3000)
     }
 }
