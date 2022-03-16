@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
         val dialog = DialogAlerter(this, DialogAlerter.TYPE_LOADING)
             .setTitle("hello there")
             .setText("This might take a while...")
+            .setProgressBarColor("#7acf19")
             .setDialogWidth(DialogAlerter.WIDTH_SMALL)
             .show()
 

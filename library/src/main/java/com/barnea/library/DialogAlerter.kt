@@ -181,6 +181,7 @@ class DialogAlerter(
     }
 
     /**
+     * @param color the chosen color hex code
      * @return DialogAlerter object
      */
     fun setBackgroundColor(color: String): DialogAlerter {
@@ -189,6 +190,7 @@ class DialogAlerter(
     }
 
     /**
+     * @param color the chosen color id
      * @return DialogAlerter object
      */
     fun setBackgroundColor(color: Int): DialogAlerter {
@@ -197,6 +199,7 @@ class DialogAlerter(
     }
 
     /**
+     * @param color the chosen color hex code
      * @return DialogAlerter object
      */
     fun setButtonBackgroundColor(color: String): DialogAlerter {
@@ -205,6 +208,7 @@ class DialogAlerter(
     }
 
     /**
+     * @param color the chosen color id
      * @return DialogAlerter object
      */
     fun setButtonBackgroundColor(color: Int): DialogAlerter {
@@ -213,6 +217,7 @@ class DialogAlerter(
     }
 
     /**
+     * @param color the chosen color hex code
      * @return DialogAlerter object
      */
     fun setTitleColor(color: String): DialogAlerter {
@@ -221,6 +226,7 @@ class DialogAlerter(
     }
 
     /**
+     * @param color the chosen color id
      * @return DialogAlerter object
      */
     fun setTitleColor(color: Int): DialogAlerter {
@@ -229,6 +235,7 @@ class DialogAlerter(
     }
 
     /**
+     * @param color the chosen color hex code
      * @return DialogAlerter object
      */
     fun setTextColor(color: String): DialogAlerter {
@@ -237,6 +244,7 @@ class DialogAlerter(
     }
 
     /**
+     * @param color the chosen color id
      * @return DialogAlerter object
      */
     fun setTextColor(color: Int): DialogAlerter {
@@ -245,6 +253,7 @@ class DialogAlerter(
     }
 
     /**
+     * @param color the chosen color hex code
      * @return DialogAlerter object
      */
     fun setButtonTextColor(color: String): DialogAlerter {
@@ -253,10 +262,29 @@ class DialogAlerter(
     }
 
     /**
+     * @param color the chosen color id
      * @return DialogAlerter object
      */
     fun setButtonTextColor(color: Int): DialogAlerter {
         getDialogButton().setTextColor(color)
+        return this
+    }
+
+    /**
+     * @param color the chosen color hex code
+     * @return DialogAlerter object
+     */
+    fun setProgressBarColor(color: String): DialogAlerter {
+        getDialogProgressBar().indeterminateDrawable.setTint(Color.parseColor(color))
+        return this
+    }
+
+    /**
+     * @param color the chosen color id
+     * @return DialogAlerter object
+     */
+    fun setProgressBarColor(color: Int): DialogAlerter {
+        getDialogProgressBar().indeterminateDrawable.setTint(color)
         return this
     }
 
