@@ -12,10 +12,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val dialog = DialogAlerter(this, DialogAlerter.TYPE_LOADING)
-            .setTitle("hello there")
+            .setTitle("This is a loading alert...")
             .setText("This might take a while...")
             .setProgressBarColor("#7acf19")
-            .setDialogWidth(DialogAlerter.WIDTH_SMALL)
             .show()
 
         // dismiss the dialog after 3 seconds
