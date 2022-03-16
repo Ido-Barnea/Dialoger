@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val dialog = DialogAlerter(this, DialogAlerter.TYPE_LOADING)
-            .setTitle("Loading")
+            .setTitle("hello there")
             .setText("This might take a while...")
             .setDialogWidth(DialogAlerter.WIDTH_SMALL)
             .show()

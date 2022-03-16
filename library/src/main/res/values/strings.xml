@@ -3,4 +3,5 @@
     <string name="default_title">Default Title</string>
     <string name="default_text">Default text default text default text default text</string>
     <string name="default_button_text">OK</string>
+    <string name="loading">Loading…</string>
 </resources>

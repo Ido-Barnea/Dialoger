@@ -124,6 +124,8 @@ class DialogAlerter(
                 getDialogProgressBar().visibility = View.VISIBLE
                 getDialogButton().visibility = View.GONE
                 setCanceledOnTouchOutside(false)
+
+                getDialogTitle().text = context.resources.getString(R.string.loading)
             }
         }
     }
