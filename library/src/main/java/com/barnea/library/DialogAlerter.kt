@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 
 class DialogAlerter(
@@ -50,6 +51,56 @@ class DialogAlerter(
         return this
     }
 
+    fun setBackgroundColor(color: String): DialogAlerter {
+        getDialogBackground().background.setTint(Color.parseColor(color))
+        return this
+    }
+
+    fun setBackgroundColor(color: Int): DialogAlerter {
+        getDialogBackground().background.setTint(color)
+        return this
+    }
+
+    fun setButtonColor(color: String): DialogAlerter {
+        getDialogButton().background.setTint(Color.parseColor(color))
+        return this
+    }
+
+    fun setButtonColor(color: Int): DialogAlerter {
+        getDialogButton().background.setTint(color)
+        return this
+    }
+
+    fun setTitleColor(color: String): DialogAlerter {
+        getDialogTitle().setTextColor(Color.parseColor(color))
+        return this
+    }
+
+    fun setTitleColor(color: Int): DialogAlerter {
+        getDialogTitle().setTextColor(color)
+        return this
+    }
+
+    fun setTextColor(color: String): DialogAlerter {
+        getDialogText().setTextColor(Color.parseColor(color))
+        return this
+    }
+
+    fun setTextColor(color: Int): DialogAlerter {
+        getDialogText().setTextColor(color)
+        return this
+    }
+
+    fun setButtonTextColor(color: String): DialogAlerter {
+        getDialogButton().setTextColor(Color.parseColor(color))
+        return this
+    }
+
+    fun setButtonTextColor(color: Int): DialogAlerter {
+        getDialogButton().setTextColor(color)
+        return this
+    }
+
     fun setCanceledOnTouchOutside(isCanceledOnTouchOutside: Boolean): DialogAlerter {
         dialog.setCanceledOnTouchOutside(isCanceledOnTouchOutside)
         return this
@@ -67,7 +118,7 @@ class DialogAlerter(
         return dialogView.findViewById(R.id.dialog_button)
     }
 
-    private fun getDialogBackground(): TextView {
+    private fun getDialogBackground(): LinearLayout {
         return dialogView.findViewById(R.id.dialog_background)
     }
 
