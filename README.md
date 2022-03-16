@@ -50,12 +50,11 @@ A simple library to help developers create alert dialogs
 - Loading
 
 # :computer: What can I edit in each dialog?
-- Title text
-- Title color
-- Text
-- Text color
-- Button text
-- Button color
+- Both title and content text
+- Both title and content color
+- Button text ```(Not visible in loading dialog)```
+- Button color ```(Not visible in loading dialog)```
+- Progress bar color ```(Only visible in loading dialog)```
 - Dialog width
 - Dialog background color
 - Whether the dialog will be dismissed on touch outside of it or not
