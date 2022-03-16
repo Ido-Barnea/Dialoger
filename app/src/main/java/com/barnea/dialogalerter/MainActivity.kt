@@ -1,6 +1,5 @@
 package com.barnea.dialogalerter
 
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
@@ -12,21 +11,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val dialog = DialogAlerter(this, DialogAlerter.TYPE_FAILURE)
-            .setTitle("Hello There! You Failed!! :)")
-            .setText("")
-            .setButtonTextColor(Color.WHITE)
-            .setCanceledOnTouchOutside(false)
-            .setDialogWidth(DialogAlerter.WIDTH_MEDIUM)
-            .setButtonOnClickListener {
-                Toast.makeText(this, "dsadsadas", Toast.LENGTH_SHORT).show()
-            }
+        val dialog = DialogAlerter(this, DialogAlerter.TYPE_LOADING)
+            .setTitle("Loading")
+            .setText("This might take a while...")
+            .setDialogWidth(DialogAlerter.WIDTH_SMALL)
             .show()
 
         // dismiss the dialog after 10 seconds
         val handler = Handler()
-        handler.postDelayed(Runnable {
+        handler.postDelayed({
             dialog.dismiss()
-        }, 10000)
+
+            DialogAlerter(this, DialogAlerter.TYPE_FAILURE)
+                .setTitle("New Dialog!")
+                .setText("This was an amazing success!")
+                .setButtonText("ALLONS-Y!")
+                .setDialogWidth(DialogAlerter.WIDTH_LARGE)
+                .setButtonOnClickListener {
+                    Toast.makeText(this, "dialog button clicked", Toast.LENGTH_SHORT).show()
+                }
+                .show()
+        }, 2000)
     }
 }

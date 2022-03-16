@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 
 
@@ -21,13 +22,14 @@ class DialogAlerter(
         const val TYPE_MESSAGE = 0
         const val TYPE_FAILURE = 1
         const val TYPE_SUCCESS = 2
+        const val TYPE_LOADING = 3
 
         const val WIDTH_SMALL = 800
         const val WIDTH_MEDIUM = 900
         const val WIDTH_LARGE = 1000
 
-        const val COLOR_SUCCESS = "#42ba96"
-        const val COLOR_FAILURE = "#ff3333"
+        private const val COLOR_SUCCESS = "#4BB543"
+        private const val COLOR_FAILURE = "#cc0000"
     }
 
     private val context = context_
@@ -86,6 +88,14 @@ class DialogAlerter(
                 setTextColor(COLOR_FAILURE)
                 setButtonBackgroundColor(COLOR_FAILURE)
                 setButtonTextColor(Color.WHITE)
+            }
+
+            TYPE_LOADING -> {
+                setTitleColor(Color.BLACK)
+                setTextColor(Color.BLACK)
+                getDialogProgressBar().visibility = View.VISIBLE
+                getDialogButton().visibility = View.GONE
+                setCanceledOnTouchOutside(false)
             }
         }
     }
@@ -186,6 +196,10 @@ class DialogAlerter(
 
     private fun getDialogButton(): TextView {
         return dialogView.findViewById(R.id.dialog_button)
+    }
+
+    private fun getDialogProgressBar(): ProgressBar {
+        return dialogView.findViewById(R.id.dialog_progressBar)
     }
 
     private fun getDialogBackground(): LinearLayout {

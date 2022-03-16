@@ -26,11 +26,19 @@
         android:textSize="16sp"
         android:textColor="@color/black" />
 
+    <ProgressBar
+        android:id="@+id/dialog_progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp" />
+
     <Button
         android:id="@+id/dialog_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/rounded_background"
         android:text="@string/default_button_text"
         android:textColor="@color/white"
