@@ -42,7 +42,7 @@ class DialogAlerter(
         dialogSetup(dialogType)
     }
 
-    fun alert() {
+    fun show(): DialogAlerter {
         if (getDialogTitle().text.isNullOrBlank()) getDialogTitle().height = 0
         if (getDialogText().text.isNullOrBlank()) getDialogText().height = 0
 
@@ -50,6 +50,13 @@ class DialogAlerter(
         dialog.show() // show the dialog
 
         setDialogWidth(dialogWidth)
+
+        return this
+    }
+
+    fun dismiss(): DialogAlerter {
+        dialog.dismiss()
+        return this
     }
 
     private fun dialogSetup(dialogType: Int){
