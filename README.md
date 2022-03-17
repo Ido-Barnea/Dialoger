@@ -1,4 +1,4 @@
-# :alarm_clock: DialogAlerter
+# :alarm_clock: Dialoger
 A simple library to help developers create alert dialogs
 
 # :camera: Preview
