@@ -291,7 +291,7 @@ class Dialoger(
      * @param color the chosen color id
      * @return Dialoger object
      */
-    fun setProgressBarIndeterminateDrawable(color: Int): Dialoger {
+    fun setProgressBarColor(color: Int): Dialoger {
         getDialogProgressBar().indeterminateDrawable.setTint(color)
         return this
     }
