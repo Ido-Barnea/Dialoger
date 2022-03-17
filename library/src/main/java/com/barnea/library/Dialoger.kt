@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
@@ -45,7 +46,7 @@ class Dialoger(
 
     /**
      * ses the dialog view and shows the dialog
-     * @return DialogAlerter object
+     * @return Dialoger object
      */
     fun show(): Dialoger {
         if (getDialogTitle().text.isNullOrBlank()) getDialogTitle().height = 0
@@ -61,7 +62,7 @@ class Dialoger(
 
     /**
      * dismisses the dialog
-     * @return DialogAlerter object
+     * @return Dialoger object
      */
     fun dismiss(): Dialoger {
         dialog.dismiss()
@@ -140,7 +141,7 @@ class Dialoger(
     /**
      * sets the width of the alert dialog popup
      * @param width the width of the alert dialog popup
-     * @return DialogAlerter object
+     * @return Dialoger object
      */
     fun setDialogWidth(width: Int): Dialoger {
         this.dialogWidth = width
@@ -156,7 +157,7 @@ class Dialoger(
     /**
      * sets buttonOnClickListener to the callback parameter
      * @param callback the callback for the dialog onClickListener
-     * @return DialogAlerter object
+     * @return Dialoger object
      */
     fun setButtonOnClickListener(callback: (() -> Unit)): Dialoger {
         buttonOnClickListener = callback
@@ -164,7 +165,7 @@ class Dialoger(
     }
 
     /**
-     * @return DialogAlerter object
+     * @return Dialoger object
      */
     fun setTitle(text: String): Dialoger {
         getDialogTitle().text = text
@@ -172,7 +173,7 @@ class Dialoger(
     }
 
     /**
-     * @return DialogAlerter object
+     * @return Dialoger object
      */
     fun setText(text: String): Dialoger {
         getDialogText().text = text
@@ -180,7 +181,7 @@ class Dialoger(
     }
 
     /**
-     * @return DialogAlerter object
+     * @return Dialoger object
      */
     fun setButtonText(text: String): Dialoger {
         getDialogButton().text = text
@@ -189,7 +190,7 @@ class Dialoger(
 
     /**
      * @param color the chosen color hex code
-     * @return DialogAlerter object
+     * @return Dialoger object
      */
     fun setBackgroundColor(color: String): Dialoger {
         getDialogBackground().background.setTint(Color.parseColor(color))
@@ -198,7 +199,7 @@ class Dialoger(
 
     /**
      * @param color the chosen color id
-     * @return DialogAlerter object
+     * @return Dialoger object
      */
     fun setBackgroundColor(color: Int): Dialoger {
         getDialogBackground().background.setTint(color)
@@ -207,7 +208,7 @@ class Dialoger(
 
     /**
      * @param color the chosen color hex code
-     * @return DialogAlerter object
+     * @return Dialoger object
      */
     fun setButtonBackgroundColor(color: String): Dialoger {
         getDialogButton().backgroundTintList = ColorStateList.valueOf(Color.parseColor(color))
@@ -216,7 +217,7 @@ class Dialoger(
 
     /**
      * @param color the chosen color id
-     * @return DialogAlerter object
+     * @return Dialoger object
      */
     fun setButtonBackgroundColor(color: Int): Dialoger {
         getDialogButton().backgroundTintList = ColorStateList.valueOf(color)
@@ -225,7 +226,7 @@ class Dialoger(
 
     /**
      * @param color the chosen color hex code
-     * @return DialogAlerter object
+     * @return Dialoger object
      */
     fun setTitleColor(color: String): Dialoger {
         getDialogTitle().setTextColor(Color.parseColor(color))
@@ -234,7 +235,7 @@ class Dialoger(
 
     /**
      * @param color the chosen color id
-     * @return DialogAlerter object
+     * @return Dialoger object
      */
     fun setTitleColor(color: Int): Dialoger {
         getDialogTitle().setTextColor(color)
@@ -243,7 +244,7 @@ class Dialoger(
 
     /**
      * @param color the chosen color hex code
-     * @return DialogAlerter object
+     * @return Dialoger object
      */
     fun setTextColor(color: String): Dialoger {
         getDialogText().setTextColor(Color.parseColor(color))
@@ -252,7 +253,7 @@ class Dialoger(
 
     /**
      * @param color the chosen color id
-     * @return DialogAlerter object
+     * @return Dialoger object
      */
     fun setTextColor(color: Int): Dialoger {
         getDialogText().setTextColor(color)
@@ -261,7 +262,7 @@ class Dialoger(
 
     /**
      * @param color the chosen color hex code
-     * @return DialogAlerter object
+     * @return Dialoger object
      */
     fun setButtonTextColor(color: String): Dialoger {
         getDialogButton().setTextColor(Color.parseColor(color))
@@ -270,7 +271,7 @@ class Dialoger(
 
     /**
      * @param color the chosen color id
-     * @return DialogAlerter object
+     * @return Dialoger object
      */
     fun setButtonTextColor(color: Int): Dialoger {
         getDialogButton().setTextColor(color)
@@ -279,7 +280,7 @@ class Dialoger(
 
     /**
      * @param color the chosen color hex code
-     * @return DialogAlerter object
+     * @return Dialoger object
      */
     fun setProgressBarColor(color: String): Dialoger {
         getDialogProgressBar().indeterminateDrawable.setTint(Color.parseColor(color))
@@ -288,16 +289,25 @@ class Dialoger(
 
     /**
      * @param color the chosen color id
-     * @return DialogAlerter object
+     * @return Dialoger object
      */
-    fun setProgressBarColor(color: Int): Dialoger {
+    fun setProgressBarIndeterminateDrawable(color: Int): Dialoger {
         getDialogProgressBar().indeterminateDrawable.setTint(color)
         return this
     }
 
     /**
+     * @param drawable the drawable used for the indeterminate mode in the dialog progress bar
+     * @return Dialoger object
+     */
+    fun setProgressBarIndeterminateDrawable(drawable: Drawable): Dialoger {
+        getDialogProgressBar().indeterminateDrawable = drawable
+        return this
+    }
+
+    /**
      * @param isCanceledOnTouchOutside whether the dialog will be dismissed on touch outside of it or not
-     * @return DialogAlerter object
+     * @return Dialoger object
      */
     fun setCanceledOnTouchOutside(isCanceledOnTouchOutside: Boolean): Dialoger {
         dialog.setCanceledOnTouchOutside(isCanceledOnTouchOutside)

@@ -12,6 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "DialogAlerter"
+rootProject.name = "Dialoger"
 include ':app'
 include ':library'
