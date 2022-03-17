@@ -1,4 +1,4 @@
-# :alarm_clock: DialogAlerter
+# :alarm_clock: Dialoger
 A simple library to help developers create alert dialogs
 
 # :camera: Preview
@@ -17,7 +17,7 @@ A simple library to help developers create alert dialogs
 > Step 2: Add the dependency
   ```gradle
   dependencies {
-	        implementation 'com.github.Ido-Barnea:DialogAlerter:1.0.1'
+	        implementation 'com.github.Ido-Barnea:DialogAlerter:1.0.2'
 	}
   ```
   That's it!
