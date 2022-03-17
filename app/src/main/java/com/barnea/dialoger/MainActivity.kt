@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val dialog = Dialoger(this, Dialoger.TYPE_LOADING)
-            .setTitle("This is a loading alert...")
+            .setTitle("This is a loading dialog...")
             .setText("This might take a while...")
             .setProgressBarColor("#7acf19")
             .show()
