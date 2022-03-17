@@ -59,6 +59,7 @@ A simple library to help developers create alert dialogs
 - Button text ```(Not visible in loading dialog)```
 - Button color ```(Not visible in loading dialog)```
 - Progress bar color ```(Only visible in loading dialog)```
+- Progress bar indeterminate drawable ```(Only visible in loading dialog)```
 - Dialog width
 - Dialog background color
 - Whether the dialog will be dismissed on touch outside of it or not
