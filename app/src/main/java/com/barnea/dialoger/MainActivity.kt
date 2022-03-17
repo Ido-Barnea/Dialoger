@@ -1,17 +1,17 @@
-package com.barnea.dialogalerter
+package com.barnea.dialoger
 
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.barnea.library.DialogAlerter
+import com.barnea.library.Dialoger
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val dialog = DialogAlerter(this, DialogAlerter.TYPE_LOADING)
+        val dialog = Dialoger(this, Dialoger.TYPE_LOADING)
             .setTitle("This is a loading alert...")
             .setText("This might take a while...")
             .setProgressBarColor("#7acf19")
@@ -22,11 +22,10 @@ class MainActivity : AppCompatActivity() {
         handler.postDelayed({
             dialog.dismiss()
 
-            DialogAlerter(this, DialogAlerter.TYPE_FAILURE)
+            Dialoger(this, Dialoger.TYPE_SUCCESS)
                 .setTitle("New Dialog!")
                 .setText("This was an amazing success!")
                 .setButtonText("ALLONS-Y!")
-                .setDialogWidth(DialogAlerter.WIDTH_LARGE)
                 .setButtonOnClickListener {
                     Toast.makeText(this, "dialog button clicked", Toast.LENGTH_SHORT).show()
                 }

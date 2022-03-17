@@ -1,4 +1,4 @@
-package com.barnea.dialogalerter
+package com.barnea.dialoger
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

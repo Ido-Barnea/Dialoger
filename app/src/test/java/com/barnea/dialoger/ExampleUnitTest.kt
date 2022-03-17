@@ -1,4 +1,4 @@
-package com.barnea.dialogalerter
+package com.barnea.dialoger
 
 import org.junit.Test
 
