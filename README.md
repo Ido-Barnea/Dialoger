@@ -17,7 +17,7 @@ A simple library to help developers create alert dialogs
 > Step 2: Add the dependency
   ```gradle
   dependencies {
-	        implementation 'com.github.Ido-Barnea:Dialoger:1.0.3'
+	        implementation 'com.github.Ido-Barnea:Dialoger:1.0.4'
 	}
   ```
   That's it!
@@ -59,6 +59,7 @@ A simple library to help developers create alert dialogs
 - Button text ```(Not visible in loading dialog)```
 - Button color ```(Not visible in loading dialog)```
 - Progress bar color ```(Only visible in loading dialog)```
+- Progress bar indeterminate drawable ```(Only visible in loading dialog)```
 - Dialog width
 - Dialog background color
 - Whether the dialog will be dismissed on touch outside of it or not
