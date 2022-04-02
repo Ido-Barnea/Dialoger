@@ -12,7 +12,6 @@ import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
-import com.barnea.library.R
 
 class Dialoger(
     context_: Context,
