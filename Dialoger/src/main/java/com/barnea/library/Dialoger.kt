@@ -45,7 +45,7 @@ class Dialoger(
     }
 
     /**
-     * ses the dialog view and shows the dialog
+     * sets the dialog view and shows the dialog
      * @return Dialoger object
      */
     fun show(): Dialoger {
