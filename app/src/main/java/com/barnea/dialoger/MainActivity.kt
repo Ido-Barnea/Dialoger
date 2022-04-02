@@ -2,6 +2,7 @@ package com.barnea.dialoger
 
 import android.os.Bundle
 import android.os.Handler
+import android.view.Gravity
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
@@ -14,6 +15,8 @@ class MainActivity : AppCompatActivity() {
             .setTitle("This is a loading dialog...")
             .setText("This might take a while...")
             .setProgressBarColor("#7acf19")
+            .setDrawable(R.drawable.ic_launcher_background)
+            .setGravity(Gravity.START)
             .show()
 
         // dismiss the dialog after 3 seconds
@@ -29,6 +32,6 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "dialog button clicked", Toast.LENGTH_SHORT).show()
                 }
                 .show()
-        }, 3000)
+        }, 10000)
     }
 }

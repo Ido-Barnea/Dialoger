@@ -1,17 +1,18 @@
 package com.barnea.dialoger
 
+import android.app.ActionBar
 import android.app.AlertDialog
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
-import android.view.LayoutInflater
-import android.view.View
-import android.view.WindowManager
+import android.view.*
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 
 class Dialoger(
     context_: Context,
@@ -306,6 +307,52 @@ class Dialoger(
     }
 
     /**
+     * @param drawable the drawable used for the imageView
+     * @return Dialoger object
+     */
+    fun setDrawable(drawable: Drawable): Dialoger {
+        getDialogImageView().setImageDrawable(drawable)
+        return this
+    }
+
+    /**
+     * @param drawableInt the drawable int used for the imageView
+     * @return Dialoger object
+     */
+    fun setDrawable(drawableInt: Int): Dialoger {
+        getDialogImageView().setImageDrawable(ContextCompat.getDrawable(context, drawableInt))
+        return this
+    }
+
+    /**
+     * Default gravity is center
+     * ProgressBar gravity stays as center, to change that use setProgressBarGravity
+     * @param gravity the gravity of all the children in the dialog
+     * @return Dialoger object
+     */
+    fun setGravity(gravity: Int): Dialoger {
+        getDialogBackground().gravity = gravity
+        return this
+    }
+
+    /**
+     * Default gravity is center
+     * @param gravity the gravity of all the children in the dialog
+     * @return Dialoger object
+     */
+    fun setProgressBarGravity(gravity: Int): Dialoger {
+        val params = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        ).apply {
+            this.gravity = gravity
+        }
+
+        getDialogProgressBar().layoutParams = params
+        return this
+    }
+
+    /**
      * @param isCanceledOnTouchOutside whether the dialog will be dismissed on touch outside of it or not
      * @return Dialoger object
      */
@@ -318,35 +365,42 @@ class Dialoger(
      * @return the dialog title textView
      */
     private fun getDialogTitle(): TextView {
-        return dialogView.findViewById(R.id.dialog_title)
+        return dialogView.findViewById(R.id.dialogTitle)
     }
 
     /**
      * @return the dialog text textView
      */
     private fun getDialogText(): TextView {
-        return dialogView.findViewById(R.id.dialog_text)
+        return dialogView.findViewById(R.id.dialogText)
+    }
+
+    /**
+     * @return the dialog image imageView
+     */
+    private fun getDialogImageView(): ImageView {
+        return dialogView.findViewById(R.id.dialogImageView)
     }
 
     /**
      * @return the dialog button
      */
     private fun getDialogButton(): TextView {
-        return dialogView.findViewById(R.id.dialog_button)
+        return dialogView.findViewById(R.id.dialogButton)
     }
 
     /**
      * @return the dialog progress bar
      */
     private fun getDialogProgressBar(): ProgressBar {
-        return dialogView.findViewById(R.id.dialog_progressBar)
+        return dialogView.findViewById(R.id.dialogProgressBar)
     }
 
     /**
      * @return the dialog parent view
      */
     private fun getDialogBackground(): LinearLayout {
-        return dialogView.findViewById(R.id.dialog_background)
+        return dialogView.findViewById(R.id.dialogBackground)
     }
 
 }
