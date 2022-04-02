@@ -3,7 +3,7 @@ A simple library to help developers create alert dialogs
 
 # :camera: Preview
 ![preview image](https://github.com/Ido-Barnea/Dialoger/blob/master/images/loading%20dialog.png)
-![preview image](https://github.com/Ido-Barnea/DialogAlerter/blob/master/images/success%20dialog.png)
+![preview image](https://github.com/Ido-Barnea/Dialoger/blob/master/images/success%20dialog.png)
 
 # :question: How can I add this to my project?
 > Step 1: Add the JitPack repository to your build file
@@ -79,3 +79,4 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+```
