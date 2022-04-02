@@ -10,18 +10,20 @@
 
     <TextView
         android:id="@+id/dialog_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/default_title"
         android:textStyle="bold"
         android:textSize="20sp"
+        android:textAlignment="inherit"
         android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/dialog_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/default_text"
+        android:textAlignment="inherit"
         android:layout_marginTop="8dp"
         android:textSize="16sp"
         android:textColor="@color/black" />
