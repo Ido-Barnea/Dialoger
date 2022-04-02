@@ -1,4 +1,4 @@
-package com.barnea.library
+package com.barnea.dialoger
 
 import android.app.AlertDialog
 import android.content.Context
@@ -12,6 +12,7 @@ import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
+import com.barnea.library.R
 
 class Dialoger(
     context_: Context,

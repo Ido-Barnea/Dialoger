@@ -1,4 +1,4 @@
-package com.barnea.library
+package com.barnea.dialoger
 
 import org.junit.Test
 
