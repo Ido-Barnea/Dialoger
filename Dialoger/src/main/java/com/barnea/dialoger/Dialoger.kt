@@ -1,17 +1,21 @@
 package com.barnea.dialoger
 
-import android.app.ActionBar
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.os.Build
+import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 
 class Dialoger(
@@ -21,25 +25,18 @@ class Dialoger(
 
     companion object {
         const val TYPE_MESSAGE = 0
-        const val TYPE_FAILURE = 1
-        const val TYPE_SUCCESS = 2
-        const val TYPE_LOADING = 3
+        const val TYPE_LOADING = 1
 
-        const val WIDTH_SMALL = 800
-        const val WIDTH_MEDIUM = 900
-        const val WIDTH_LARGE = 1000
-
-        private const val COLOR_SUCCESS = "#4BB543"
-        private const val COLOR_FAILURE = "#cc0000"
+        const val dialogWidth = 900
     }
 
     private val context = context_
 
     private val dialog = AlertDialog.Builder(context).create()
+    @SuppressLint("InflateParams")
     private var dialogView: View = LayoutInflater.from(context).inflate(R.layout.layout_dialog, null)
 
     private var buttonOnClickListener: (() -> Unit)? = null
-    private var dialogWidth = WIDTH_MEDIUM
 
     init {
         dialogSetup(dialogType)
@@ -50,13 +47,12 @@ class Dialoger(
      * @return Dialoger object
      */
     fun show(): Dialoger {
-        if (getDialogTitle().text.isNullOrBlank()) getDialogTitle().height = 0
-        if (getDialogText().text.isNullOrBlank()) getDialogText().height = 0
+        if (getDialogTitle().text.isNullOrBlank()) getDialogTitle().visibility = View.GONE
+        if (getDialogText().text.isNullOrBlank()) getDialogText().visibility = View.GONE
+        if (getDialogImageView().drawable == null) getDialogImageView().visibility = View.GONE
 
         dialog.setView(dialogView) // set dialog view after editing the view
         dialog.show() // show the dialog
-
-        setDialogWidth(dialogWidth)
 
         return this
     }
@@ -102,57 +98,16 @@ class Dialoger(
     private fun setDialogComponentsAccordingToDialogType(dialogType: Int){
         when (dialogType){
             TYPE_MESSAGE -> {
-                setTitleColor(Color.BLACK)
-                setTextColor(Color.BLACK)
-            }
-
-            TYPE_SUCCESS -> {
-                setTitleColor(COLOR_SUCCESS)
-                setTextColor(COLOR_SUCCESS)
-                setButtonBackgroundColor(COLOR_SUCCESS)
-                setButtonTextColor(Color.WHITE)
-
-                getDialogTitle().text = context.resources.getString(R.string.success)
-                getDialogText().text = ""
-            }
-
-            TYPE_FAILURE -> {
-                setTitleColor(COLOR_FAILURE)
-                setTextColor(COLOR_FAILURE)
-                setButtonBackgroundColor(COLOR_FAILURE)
-                setButtonTextColor(Color.WHITE)
-
-                getDialogTitle().text = context.resources.getString(R.string.error_title)
-                getDialogText().text = context.resources.getString(R.string.error_text)
+                getDialogProgressBar().visibility = View.GONE
+                getDialogButton().visibility = View.VISIBLE
             }
 
             TYPE_LOADING -> {
-                setTitleColor(Color.BLACK)
-                setTextColor(Color.BLACK)
                 getDialogProgressBar().visibility = View.VISIBLE
                 getDialogButton().visibility = View.GONE
                 setCanceledOnTouchOutside(false)
-
-                getDialogTitle().text = context.resources.getString(R.string.loading)
-                getDialogText().text = ""
             }
         }
-    }
-
-    /**
-     * sets the width of the alert dialog popup
-     * @param width the width of the alert dialog popup
-     * @return Dialoger object
-     */
-    fun setDialogWidth(width: Int): Dialoger {
-        this.dialogWidth = width
-
-        val lp = WindowManager.LayoutParams()
-        lp.copyFrom(dialog.window?.attributes)
-        lp.width = width
-        dialog.window?.attributes = lp
-
-        return this
     }
 
     /**
@@ -176,7 +131,7 @@ class Dialoger(
     /**
      * @return Dialoger object
      */
-    fun setText(text: String): Dialoger {
+    fun setDescription(text: String): Dialoger {
         getDialogText().text = text
         return this
     }
@@ -190,29 +145,11 @@ class Dialoger(
     }
 
     /**
-     * @param color the chosen color hex code
-     * @return Dialoger object
-     */
-    fun setBackgroundColor(color: String): Dialoger {
-        getDialogBackground().background.setTint(Color.parseColor(color))
-        return this
-    }
-
-    /**
      * @param color the chosen color id
      * @return Dialoger object
      */
     fun setBackgroundColor(color: Int): Dialoger {
-        getDialogBackground().background.setTint(color)
-        return this
-    }
-
-    /**
-     * @param color the chosen color hex code
-     * @return Dialoger object
-     */
-    fun setButtonBackgroundColor(color: String): Dialoger {
-        getDialogButton().backgroundTintList = ColorStateList.valueOf(Color.parseColor(color))
+        getDialogBackground().backgroundTintList = intToColorStateList(color)
         return this
     }
 
@@ -221,16 +158,7 @@ class Dialoger(
      * @return Dialoger object
      */
     fun setButtonBackgroundColor(color: Int): Dialoger {
-        getDialogButton().backgroundTintList = ColorStateList.valueOf(color)
-        return this
-    }
-
-    /**
-     * @param color the chosen color hex code
-     * @return Dialoger object
-     */
-    fun setTitleColor(color: String): Dialoger {
-        getDialogTitle().setTextColor(Color.parseColor(color))
+        getDialogButton().backgroundTintList = intToColorStateList(color)
         return this
     }
 
@@ -239,16 +167,7 @@ class Dialoger(
      * @return Dialoger object
      */
     fun setTitleColor(color: Int): Dialoger {
-        getDialogTitle().setTextColor(color)
-        return this
-    }
-
-    /**
-     * @param color the chosen color hex code
-     * @return Dialoger object
-     */
-    fun setTextColor(color: String): Dialoger {
-        getDialogText().setTextColor(Color.parseColor(color))
+        getDialogTitle().setTextColor(ContextCompat.getColor(context, color))
         return this
     }
 
@@ -256,17 +175,8 @@ class Dialoger(
      * @param color the chosen color id
      * @return Dialoger object
      */
-    fun setTextColor(color: Int): Dialoger {
-        getDialogText().setTextColor(color)
-        return this
-    }
-
-    /**
-     * @param color the chosen color hex code
-     * @return Dialoger object
-     */
-    fun setButtonTextColor(color: String): Dialoger {
-        getDialogButton().setTextColor(Color.parseColor(color))
+    fun setDescriptionColor(color: Int): Dialoger {
+        getDialogText().setTextColor(ContextCompat.getColor(context, color))
         return this
     }
 
@@ -275,16 +185,7 @@ class Dialoger(
      * @return Dialoger object
      */
     fun setButtonTextColor(color: Int): Dialoger {
-        getDialogButton().setTextColor(color)
-        return this
-    }
-
-    /**
-     * @param color the chosen color hex code
-     * @return Dialoger object
-     */
-    fun setProgressBarColor(color: String): Dialoger {
-        getDialogProgressBar().indeterminateDrawable.setTint(Color.parseColor(color))
+        getDialogButton().setTextColor(ContextCompat.getColor(context, color))
         return this
     }
 
@@ -292,8 +193,8 @@ class Dialoger(
      * @param color the chosen color id
      * @return Dialoger object
      */
-    fun setProgressBarColor(color: Int): Dialoger {
-        getDialogProgressBar().indeterminateDrawable.setTint(color)
+    fun setLoadingProgressBarColor(color: Int): Dialoger {
+        getDialogProgressBar().indeterminateDrawable.setTintList(intToColorStateList(color))
         return this
     }
 
@@ -325,40 +226,20 @@ class Dialoger(
     }
 
     /**
-     * Default gravity is center
-     * ProgressBar gravity stays as center, to change that use setProgressBarGravity
-     * @param gravity the gravity of all the children in the dialog
-     * @return Dialoger object
-     */
-    fun setGravity(gravity: Int): Dialoger {
-        getDialogBackground().gravity = gravity
-        return this
-    }
-
-    /**
-     * Default gravity is center
-     * @param gravity the gravity of all the children in the dialog
-     * @return Dialoger object
-     */
-    fun setProgressBarGravity(gravity: Int): Dialoger {
-        val params = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        ).apply {
-            this.gravity = gravity
-        }
-
-        getDialogProgressBar().layoutParams = params
-        return this
-    }
-
-    /**
      * @param isCanceledOnTouchOutside whether the dialog will be dismissed on touch outside of it or not
      * @return Dialoger object
      */
     fun setCanceledOnTouchOutside(isCanceledOnTouchOutside: Boolean): Dialoger {
         dialog.setCanceledOnTouchOutside(isCanceledOnTouchOutside)
         return this
+    }
+
+    /**
+     * @param color the int color code
+     * @return the color state list of the color code
+     */
+    private fun intToColorStateList(color: Int): ColorStateList {
+        return ContextCompat.getColorStateList(context, color)!!
     }
 
     /**
