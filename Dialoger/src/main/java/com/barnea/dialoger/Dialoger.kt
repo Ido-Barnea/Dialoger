@@ -22,8 +22,6 @@ class Dialoger(
     companion object {
         const val TYPE_MESSAGE = 0
         const val TYPE_LOADING = 1
-
-        const val dialogWidth = 900
     }
 
     private val context = context_
