@@ -3,7 +3,7 @@ A simple library to help developers create alert dialogs
 
 # :camera: Preview
 ![preview image](https://github.com/Ido-Barnea/Dialoger/blob/master/images/loading%20dialog.png)
-![preview image](https://github.com/Ido-Barnea/Dialoger/blob/master/images/success%20dialog.png)
+![preview image](https://github.com/Ido-Barnea/Dialoger/blob/master/images/message%20dialog.png)
 
 # :question: How can I add this to my project?
 > Step 1: Add the JitPack repository to your build file
@@ -51,22 +51,17 @@ A simple library to help developers create alert dialogs
 
 # :book: Dialog Types:
 - Message
-- Success
-- Failure
 - Loading
 
 # :computer: What can I edit in each dialog?
-- Both title and content text
-- Both title and content color
+- Title & description text
+- Title & description text color
 - Image drawable
 - Button text ```(Not visible in loading dialog)```
 - Button color ```(Not visible in loading dialog)```
 - Progress bar color ```(Only visible in loading dialog)```
 - Progress bar indeterminate drawable ```(Only visible in loading dialog)```
-- Dialog width
 - Dialog background color
-- Dialog gravity ```(not including the progress bar)```
-- Progress bar gravity
 - Whether the dialog will be dismissed on touch outside of it or not
 
 # :briefcase: License
