@@ -17,7 +17,7 @@ A simple library to help developers create alert dialogs
 > Step 2: Add the dependency
   ```gradle
   dependencies {
-	        implementation 'com.github.Ido-Barnea:Dialoger:1.0.9'
+	        implementation 'com.github.Ido-Barnea:Dialoger:1.1.0'
 	}
   ```
   That's it!
@@ -25,9 +25,11 @@ A simple library to help developers create alert dialogs
 # :fast_forward: Quick use
   ```kotlin
   val dialog = Dialoger(this, Dialoger.TYPE_LOADING)
-            .setTitle("This is a loading alert...")
+            .setTitle("This is a loading dialog...")
             .setText("This might take a while...")
             .setProgressBarColor("#7acf19")
+            .setDrawable(R.drawable.ic_launcher_background)
+            .setGravity(Gravity.START)
             .show()
 
         // dismiss the dialog after 3 seconds
@@ -56,12 +58,15 @@ A simple library to help developers create alert dialogs
 # :computer: What can I edit in each dialog?
 - Both title and content text
 - Both title and content color
+- Image drawable
 - Button text ```(Not visible in loading dialog)```
 - Button color ```(Not visible in loading dialog)```
 - Progress bar color ```(Only visible in loading dialog)```
 - Progress bar indeterminate drawable ```(Only visible in loading dialog)```
 - Dialog width
 - Dialog background color
+- Dialog gravity ```(not including the progress bar)```
+- Progress bar gravity
 - Whether the dialog will be dismissed on touch outside of it or not
 
 # :briefcase: License
