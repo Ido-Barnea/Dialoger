@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
 
         val dialog = Dialoger(this, Dialoger.TYPE_LOADING)
             .setTitle("This is a loading dialog...")
-            .setDescription("This might take a while...")
+            .setDescription("We couldn\\'t find the address, and we are not sure anyone will be able to. ever. Maybe try writing it again?")
             .setLoadingProgressBarColor(R.color.purple_200)
             .show()
 
