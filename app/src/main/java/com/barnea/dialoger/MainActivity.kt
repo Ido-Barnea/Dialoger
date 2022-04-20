@@ -2,7 +2,6 @@ package com.barnea.dialoger
 
 import android.os.Bundle
 import android.os.Handler
-import android.view.Gravity
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
@@ -13,8 +12,8 @@ class MainActivity : AppCompatActivity() {
 
         val dialog = Dialoger(this, Dialoger.TYPE_LOADING)
             .setTitle("This is a loading dialog...")
-            .setDescription("We couldn\\'t find the address, and we are not sure anyone will be able to. ever. Maybe try writing it again?")
-            .setLoadingProgressBarColor(R.color.purple_200)
+            .setDescription("This might take a while...")
+            .setProgressBarColor(R.color.purple_200)
             .show()
 
         // dismiss the dialog after 3 seconds
@@ -22,12 +21,10 @@ class MainActivity : AppCompatActivity() {
             dialog.dismiss()
 
             Dialoger(this, Dialoger.TYPE_MESSAGE)
+                .setDialogColorTheme(R.color.green)
                 .setTitle("New Dialog!")
-                .setTitleColor(R.color.green)
                 .setDescription("This was an amazing success!")
-                .setDescriptionColor(R.color.green)
                 .setButtonText("ALLONS-Y!")
-                .setButtonBackgroundColor(R.color.green)
                 .setButtonOnClickListener {
                     Toast.makeText(this, "dialog button clicked", Toast.LENGTH_SHORT).show()
                 }

@@ -139,6 +139,20 @@ class Dialoger(
     }
 
     /**
+     * Changes the color of all dialog elements
+     * @param color the chosen color id
+     * @return Dialoger object
+     */
+    fun setDialogColorTheme(color: Int): Dialoger {
+        setTitleColor(color)
+        setDescriptionColor(color)
+        setButtonBackgroundColor(color)
+        setProgressBarColor(color)
+
+        return this
+    }
+
+    /**
      * @param color the chosen color id
      * @return Dialoger object
      */
@@ -187,7 +201,7 @@ class Dialoger(
      * @param color the chosen color id
      * @return Dialoger object
      */
-    fun setLoadingProgressBarColor(color: Int): Dialoger {
+    fun setProgressBarColor(color: Int): Dialoger {
         getDialogProgressBar().indeterminateDrawable.setTintList(intToColorStateList(color))
         return this
     }
