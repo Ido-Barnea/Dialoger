@@ -24,29 +24,26 @@ A simple library to help developers create beautiful alert dialogs
 
 # :fast_forward: Quick use
   ```kotlin
-  val dialog = Dialoger(this, Dialoger.TYPE_LOADING)
-            .setTitle("This is a loading dialog...")
-            .setText("This might take a while...")
-            .setProgressBarColor("#7acf19")
-            .setDrawable(R.drawable.ic_launcher_background)
-            .setGravity(Gravity.START)
-            .show()
+	val dialog = Dialoger(this, Dialoger.TYPE_LOADING)
+		.setTitle("This is a loading dialog...")
+		.setDescription("This might take a while...")
+		.setProgressBarColor(R.color.purple_200)
+		.show()
 
-        // dismiss the dialog after 3 seconds
-        val handler = Handler()
-        handler.postDelayed({
-            dialog.dismiss()
+	// dismiss the dialog after 3 seconds
+	Handler().postDelayed({
+		dialog.dismiss()
 
-            Dialoger(this, Dialoger.TYPE_SUCCESS)
-                .setTitle("New Dialog!")
-                .setText("This was an amazing success!")
-                .setButtonText("ALLONS-Y!")
-                .setDialogWidth(DialogAlerter.WIDTH_LARGE)
-                .setButtonOnClickListener {
-                    Toast.makeText(this, "dialog button clicked", Toast.LENGTH_SHORT).show()
-                }
-                .show()
-        }, 3000)
+		Dialoger(this, Dialoger.TYPE_MESSAGE)
+			.setDialogColorTheme(R.color.green)
+			.setTitle("New Dialog!")
+			.setDescription("This was an amazing success!")
+			.setButtonText("ALLONS-Y!")
+			.setButtonOnClickListener {
+				Toast.makeText(this, "dialog button clicked", Toast.LENGTH_SHORT).show()
+			}
+			.show()
+	}, 3000)
   ```
 
 # :book: Dialog Types:
