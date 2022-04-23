@@ -99,7 +99,7 @@ class Dialoger(
             TYPE_LOADING -> {
                 getDialogProgressBar().visibility = View.VISIBLE
                 getDialogButton().visibility = View.GONE
-                setCanceledOnTouchOutside(false)
+                setCancelable(false)
             }
         }
     }
@@ -234,11 +234,11 @@ class Dialoger(
     }
 
     /**
-     * @param isCanceledOnTouchOutside whether the dialog will be dismissed on touch outside of it or not
+     * @param isCancelable whether the dialog will be dismissed on back press or by any other means
      * @return Dialoger object
      */
-    fun setCanceledOnTouchOutside(isCanceledOnTouchOutside: Boolean): Dialoger {
-        dialog.setCanceledOnTouchOutside(isCanceledOnTouchOutside)
+    fun setCancelable(isCancelable: Boolean): Dialoger {
+        dialog.setCancelable(isCancelable)
         return this
     }
 
