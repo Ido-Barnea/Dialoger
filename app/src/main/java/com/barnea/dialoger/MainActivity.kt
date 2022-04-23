@@ -2,6 +2,7 @@ package com.barnea.dialoger
 
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
             .show()
 
         // dismiss the dialog after 3 seconds
-        Handler().postDelayed({
+        Handler(Looper.getMainLooper()).postDelayed({
             dialog.dismiss()
 
             Dialoger(this, Dialoger.TYPE_MESSAGE)
