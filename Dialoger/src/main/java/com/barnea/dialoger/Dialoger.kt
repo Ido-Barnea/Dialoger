@@ -1,21 +1,20 @@
 package com.barnea.dialoger
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
-import android.view.*
+import android.view.View
+import android.widget.Button
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 
 class Dialoger(
-    context_: Context,
+    private val context: Context,
     dialogType: Int
 ) {
 
@@ -24,13 +23,17 @@ class Dialoger(
         const val TYPE_LOADING = 1
     }
 
-    private val context = context_
-
     private val dialog = AlertDialog.Builder(context).create()
-    @SuppressLint("InflateParams")
-    private var dialogView: View = LayoutInflater.from(context).inflate(R.layout.layout_dialog, null)
+    private var dialogView: View = View.inflate(context, R.layout.layout_dialog, null)
 
     private var buttonOnClickListener: (() -> Unit)? = null
+
+    private val dialogTitle = dialogView.findViewById<TextView>(R.id.dialogTitle)
+    private val dialogDescription = dialogView.findViewById<TextView>(R.id.dialogDescription)
+    private val dialogImageView = dialogView.findViewById<ImageView>(R.id.dialogImageView)
+    private val dialogButton = dialogView.findViewById<Button>(R.id.dialogButton)
+    private val dialogProgressBar = dialogView.findViewById<ProgressBar>(R.id.dialogProgressBar)
+    private val dialogBackground = dialogView.findViewById<View>(R.id.dialogBackground)
 
     init {
         dialogSetup(dialogType)
@@ -41,9 +44,9 @@ class Dialoger(
      * @return Dialoger object
      */
     fun show(): Dialoger {
-        if (getDialogTitle().text.isNullOrBlank()) getDialogTitle().visibility = View.GONE
-        if (getDialogText().text.isNullOrBlank()) getDialogText().visibility = View.GONE
-        if (getDialogImageView().drawable == null) getDialogImageView().visibility = View.GONE
+        if (dialogTitle.text.isNullOrBlank()) dialogTitle.visibility = View.GONE
+        if (dialogDescription.text.isNullOrBlank()) dialogDescription.visibility = View.GONE
+        if (dialogImageView.drawable == null) dialogImageView.visibility = View.GONE
 
         dialog.setView(dialogView) // set dialog view after editing the view
         dialog.show() // show the dialog
@@ -79,7 +82,7 @@ class Dialoger(
      * dismisses dialog when button is clicked and invokes buttonOnClickListener
      */
     private fun setDialogButtonOnClickListener(){
-        getDialogButton().setOnClickListener {
+        dialogButton.setOnClickListener {
             dialog.dismiss()
             buttonOnClickListener?.invoke()
         }
@@ -92,13 +95,13 @@ class Dialoger(
     private fun setDialogComponentsAccordingToDialogType(dialogType: Int){
         when (dialogType){
             TYPE_MESSAGE -> {
-                getDialogProgressBar().visibility = View.GONE
-                getDialogButton().visibility = View.VISIBLE
+                dialogProgressBar.visibility = View.GONE
+                dialogButton.visibility = View.VISIBLE
             }
 
             TYPE_LOADING -> {
-                getDialogProgressBar().visibility = View.VISIBLE
-                getDialogButton().visibility = View.GONE
+                dialogProgressBar.visibility = View.VISIBLE
+                dialogButton.visibility = View.GONE
                 setCancelable(false)
             }
         }
@@ -118,7 +121,7 @@ class Dialoger(
      * @return Dialoger object
      */
     fun setTitle(text: String): Dialoger {
-        getDialogTitle().text = text
+        dialogTitle.text = text
         return this
     }
 
@@ -126,7 +129,7 @@ class Dialoger(
      * @return Dialoger object
      */
     fun setDescription(text: String): Dialoger {
-        getDialogText().text = text
+        dialogDescription.text = text
         return this
     }
 
@@ -134,7 +137,7 @@ class Dialoger(
      * @return Dialoger object
      */
     fun setButtonText(text: String): Dialoger {
-        getDialogButton().text = text
+        dialogButton.text = text
         return this
     }
 
@@ -157,7 +160,7 @@ class Dialoger(
      * @return Dialoger object
      */
     fun setBackgroundColor(color: Int): Dialoger {
-        getDialogBackground().backgroundTintList = intToColorStateList(color)
+        dialogBackground.backgroundTintList = intToColorStateList(color)
         return this
     }
 
@@ -166,7 +169,7 @@ class Dialoger(
      * @return Dialoger object
      */
     fun setButtonBackgroundColor(color: Int): Dialoger {
-        getDialogButton().backgroundTintList = intToColorStateList(color)
+        dialogButton.backgroundTintList = intToColorStateList(color)
         return this
     }
 
@@ -175,7 +178,7 @@ class Dialoger(
      * @return Dialoger object
      */
     fun setTitleColor(color: Int): Dialoger {
-        getDialogTitle().setTextColor(ContextCompat.getColor(context, color))
+        dialogTitle.setTextColor(ContextCompat.getColor(context, color))
         return this
     }
 
@@ -184,7 +187,7 @@ class Dialoger(
      * @return Dialoger object
      */
     fun setDescriptionColor(color: Int): Dialoger {
-        getDialogText().setTextColor(ContextCompat.getColor(context, color))
+        dialogDescription.setTextColor(ContextCompat.getColor(context, color))
         return this
     }
 
@@ -193,7 +196,7 @@ class Dialoger(
      * @return Dialoger object
      */
     fun setButtonTextColor(color: Int): Dialoger {
-        getDialogButton().setTextColor(ContextCompat.getColor(context, color))
+        dialogButton.setTextColor(ContextCompat.getColor(context, color))
         return this
     }
 
@@ -202,7 +205,7 @@ class Dialoger(
      * @return Dialoger object
      */
     fun setProgressBarColor(color: Int): Dialoger {
-        getDialogProgressBar().indeterminateDrawable.setTintList(intToColorStateList(color))
+        dialogProgressBar.indeterminateDrawable.setTintList(intToColorStateList(color))
         return this
     }
 
@@ -211,7 +214,7 @@ class Dialoger(
      * @return Dialoger object
      */
     fun setProgressBarIndeterminateDrawable(drawable: Drawable): Dialoger {
-        getDialogProgressBar().indeterminateDrawable = drawable
+        dialogProgressBar.indeterminateDrawable = drawable
         return this
     }
 
@@ -220,7 +223,7 @@ class Dialoger(
      * @return Dialoger object
      */
     fun setDrawable(drawable: Drawable): Dialoger {
-        getDialogImageView().setImageDrawable(drawable)
+        dialogImageView.setImageDrawable(drawable)
         return this
     }
 
@@ -229,7 +232,7 @@ class Dialoger(
      * @return Dialoger object
      */
     fun setDrawable(drawableInt: Int): Dialoger {
-        getDialogImageView().setImageDrawable(ContextCompat.getDrawable(context, drawableInt))
+        dialogImageView.setImageDrawable(ContextCompat.getDrawable(context, drawableInt))
         return this
     }
 
@@ -248,48 +251,6 @@ class Dialoger(
      */
     private fun intToColorStateList(color: Int): ColorStateList {
         return ContextCompat.getColorStateList(context, color)!!
-    }
-
-    /**
-     * @return the dialog title textView
-     */
-    private fun getDialogTitle(): TextView {
-        return dialogView.findViewById(R.id.dialogTitle)
-    }
-
-    /**
-     * @return the dialog text textView
-     */
-    private fun getDialogText(): TextView {
-        return dialogView.findViewById(R.id.dialogText)
-    }
-
-    /**
-     * @return the dialog image imageView
-     */
-    private fun getDialogImageView(): ImageView {
-        return dialogView.findViewById(R.id.dialogImageView)
-    }
-
-    /**
-     * @return the dialog button
-     */
-    private fun getDialogButton(): TextView {
-        return dialogView.findViewById(R.id.dialogButton)
-    }
-
-    /**
-     * @return the dialog progress bar
-     */
-    private fun getDialogProgressBar(): ProgressBar {
-        return dialogView.findViewById(R.id.dialogProgressBar)
-    }
-
-    /**
-     * @return the dialog parent view
-     */
-    private fun getDialogBackground(): LinearLayout {
-        return dialogView.findViewById(R.id.dialogBackground)
     }
 
 }

@@ -28,7 +28,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/dialogText"
+        android:id="@+id/dialogDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
