@@ -2,8 +2,7 @@
 A simple library to help developers create beautiful alert dialogs
 
 # :camera: Preview
-![preview image](https://github.com/Ido-Barnea/Dialoger/blob/master/images/loading%20dialog.png)
-![preview image](https://github.com/Ido-Barnea/Dialoger/blob/master/images/message%20dialog.png)
+<img src="https://github.com/Ido-Barnea/Dialoger/blob/master/images/loading_mockup.png" width="49%"/> <img src="https://github.com/Ido-Barnea/Dialoger/blob/master/images/success_mockup.png" width="49%"/>
 
 # :question: How can I add this to my project?
 > Step 1: Add the JitPack repository to your build file
