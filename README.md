@@ -16,7 +16,7 @@ A simple library to help developers create beautiful alert dialogs
 > Step 2: Add the dependency
   ```gradle
   dependencies {
-	        implementation 'com.github.Ido-Barnea:Dialoger:1.1.5'
+	        implementation 'com.github.Ido-Barnea:Dialoger:1.1.6'
 	}
   ```
   That's it!
