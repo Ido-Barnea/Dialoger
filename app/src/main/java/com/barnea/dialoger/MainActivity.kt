@@ -32,6 +32,6 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "dialog button clicked", Toast.LENGTH_SHORT).show()
                 }
                 .show()
-        }, 10000)
+        }, 5000)
     }
 }
