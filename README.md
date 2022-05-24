@@ -1,10 +1,10 @@
-# :alarm_clock: Dialoger
+# Dialoger :alarm_clock:
 A simple library to help developers create beautiful alert dialogs
 
-# :camera: Preview
+# Preview :camera:
 <img src="https://github.com/Ido-Barnea/Dialoger/blob/master/images/loading_mockup.png" width="49%"/> <img src="https://github.com/Ido-Barnea/Dialoger/blob/master/images/success_mockup.png" width="49%"/>
 
-# :question: How can I add this to my project?
+# How can I add this to my project? :question:
 > Step 1: Add the JitPack repository to your build file
   ```gradle
   allprojects {
@@ -21,7 +21,7 @@ A simple library to help developers create beautiful alert dialogs
   ```
   That's it!
 
-# :fast_forward: Quick use
+# Quick use :fast_forward:
   ```kotlin
 	val dialog = Dialoger(this, Dialoger.TYPE_LOADING)
             .setTitle("This is a loading dialog...")
@@ -47,11 +47,11 @@ A simple library to help developers create beautiful alert dialogs
         }, 5000)
   ```
 
-# :book: Dialog Types:
+# Dialog Types: :book:
 - Message
 - Loading
 
-# :computer: What can I edit in each dialog?
+# What can I edit in each dialog? :computer:
 - Title & description text
 - Title & description text color
 - Image drawable
@@ -62,7 +62,7 @@ A simple library to help developers create beautiful alert dialogs
 - Dialog background color
 - Whether the dialog will be dismissed on touch outside of it or not
 
-# :briefcase: License
+# License :briefcase:
 ```
 Copyright 2022 Ido Barnea
 
