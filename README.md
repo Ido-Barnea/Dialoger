@@ -1,5 +1,5 @@
 # Dialoger :alarm_clock:
-A simple library to help developers create beautiful alert dialogs
+A simple library to help developers create beautiful alert dialogs.
 
 # Preview :camera:
 <img src="https://github.com/Ido-Barnea/Dialoger/blob/master/images/loading_mockup.png" width="49%"/> <img src="https://github.com/Ido-Barnea/Dialoger/blob/master/images/success_mockup.png" width="49%"/>
