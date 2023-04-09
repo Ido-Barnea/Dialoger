@@ -8,10 +8,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.view.*
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import androidx.core.content.ContextCompat
 
 class Dialoger(
@@ -274,7 +271,7 @@ class Dialoger(
     /**
      * @return the dialog button
      */
-    private fun getDialogButton(): TextView {
+    private fun getDialogButton(): Button {
         return dialogView.findViewById(R.id.dialogButton)
     }
 
